@@ -70,14 +70,18 @@ public class PlayerController : MonoBehaviour
         canBuild = !canBuild;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Buildable")
         {
             canBuild = true;
             currentBuildable = collision.GetComponent<Buildable>();
         }
-        else if (collision.tag == "Warp")
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Warp")
         {
             if (!movingToPlanet)
             {
